@@ -79,15 +79,19 @@ class RecipeViewModel : ViewModel() {
                     imageUrl = generatedRecipe?.imageUrl ?: "",
                     ingredients = generatedRecipe?.ingredients ?: listOf(),
                     instructions = generatedRecipe?.instructions ?: listOf(),
-                    minutes = generatedRecipe?.stars ?: 0,
+                    minutes = generatedRecipe?.minutes ?: 0,
                     stars = generatedRecipe?.stars ?: 0,
                     title = generatedRecipe?.title ?: ""
                 )
-                val result = recipeService.saveGeneratedRecipe(recipe = recipe)
-                print(result.toString())
-            }catch (e: Exception){
+                val result = recipeService.saveGeneratedRecipe(recipe)
+                println(result.toString())
+
+                // REFRESCAR RECETAS
+                getRecipes()
+            } catch (e: Exception){
                 println(e.toString())
             }
         }
     }
+
 }
